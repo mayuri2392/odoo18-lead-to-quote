@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="scoring_rule_high_revenue" model="lead.scoring.rule">
+            <field name="name">High Expected Revenue (>= 10,000)</field>
+            <field name="condition_type">min_revenue</field>
+            <field name="condition_value">10000</field>
+            <field name="points">30</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record id="scoring_rule_medium_revenue" model="lead.scoring.rule">
+            <field name="name">Medium Expected Revenue (>= 2,500)</field>
+            <field name="condition_type">min_revenue</field>
+            <field name="condition_value">2500</field>
+            <field name="points">15</field>
+            <field name="sequence">20</field>
+        </record>
+
+        <record id="scoring_rule_high_probability" model="lead.scoring.rule">
+            <field name="name">High Probability (>= 50%)</field>
+            <field name="condition_type">min_probability</field>
+            <field name="condition_value">50</field>
+            <field name="points">20</field>
+            <field name="sequence">30</field>
+        </record>
+
+    </data>
+</odoo>

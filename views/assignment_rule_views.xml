@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_lead_assignment_rule_tree" model="ir.ui.view">
+        <field name="name">lead.assignment.rule.list</field>
+        <field name="model">lead.assignment.rule</field>
+        <field name="arch" type="xml">
+            <list string="Assignment Rules">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="user_id"/>
+                <field name="team_id"/>
+                <field name="min_lead_score"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_lead_assignment_rule_form" model="ir.ui.view">
+        <field name="name">lead.assignment.rule.form</field>
+        <field name="model">lead.assignment.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. NL Hot Leads to Sander"/></h1>
+                    </div>
+                    <group>
+                        <group string="Match Conditions">
+                            <field name="country_ids" widget="many2many_tags"/>
+                            <field name="min_expected_revenue"/>
+                            <field name="min_lead_score"/>
+                            <field name="tag_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Assignment">
+                            <field name="user_id"/>
+                            <field name="team_id"/>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_lead_assignment_rule" model="ir.actions.act_window">
+        <field name="name">Assignment Rules</field>
+        <field name="res_model">lead.assignment.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <menuitem id="menu_lead_assignment_rule"
+              name="Assignment Rules"
+              parent="menu_lead_to_quote_root"
+              action="action_lead_assignment_rule"
+              sequence="20"/>
+
+</odoo>

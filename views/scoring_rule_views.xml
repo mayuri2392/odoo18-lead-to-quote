@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- LIST VIEW -->
+    <record id="view_lead_scoring_rule_tree" model="ir.ui.view">
+        <field name="name">lead.scoring.rule.list</field>
+        <field name="model">lead.scoring.rule</field>
+        <field name="arch" type="xml">
+            <list string="Scoring Rules">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="condition_type"/>
+                <field name="points"/>
+                <field name="active" widget="boolean_toggle"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- FORM VIEW -->
+    <record id="view_lead_scoring_rule_form" model="ir.ui.view">
+        <field name="name">lead.scoring.rule.form</field>
+        <field name="model">lead.scoring.rule</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <h1><field name="name" placeholder="e.g. Hot NL Customers"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="sequence"/>
+                            <field name="active"/>
+                            <field name="points"/>
+                        </group>
+                        <group>
+                            <field name="condition_type"/>
+                            <field name="condition_value"
+                                   invisible="condition_type not in ('min_revenue', 'min_probability')"/>
+                            <field name="tag_id"
+                                   invisible="condition_type != 'has_tag'"/>
+                            <field name="country_id"
+                                   invisible="condition_type != 'country'"/>
+                            <field name="source_id"
+                                   invisible="condition_type != 'source'"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- ACTION -->
+    <record id="action_lead_scoring_rule" model="ir.actions.act_window">
+        <field name="name">Scoring Rules</field>
+        <field name="res_model">lead.scoring.rule</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- MENUS -->
+    <menuitem id="menu_lead_to_quote_root"
+              name="Lead Tools"
+              parent="crm.crm_menu_root"
+              sequence="50"/>
+
+    <menuitem id="menu_lead_scoring_rule"
+              name="Scoring Rules"
+              parent="menu_lead_to_quote_root"
+              action="action_lead_scoring_rule"
+              sequence="10"/>
+
+</odoo>

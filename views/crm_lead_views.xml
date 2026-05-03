@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_crm_lead_form_inherit_lead_to_quote" model="ir.ui.view">
+        <field name="name">crm.lead.form.inherit.lead_to_quote</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_create_quotation"
+                        type="object"
+                        string="Create Quotation"
+                        class="oe_highlight"
+                        help="Creates a pre-filled quotation using lead score, assigned salesperson, and pricing rules."
+                        invisible="type != 'opportunity' or quotation_count > 0"/>
+            </xpath>
+            <xpath expr="//field[@name='probability']" position="after">
+                <field name="lead_score" readonly="1"/>
+                <field name="score_band" widget="badge"
+                       decoration-danger="score_band == 'cold'"
+                       decoration-warning="score_band == 'warm'"
+                       decoration-success="score_band == 'hot'"/>
+                <field name="auto_assigned" readonly="1"/>
+                <field name="assignment_rule_id" readonly="1"
+                       invisible="not auto_assigned"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_crm_lead_tree_inherit_lead_to_quote" model="ir.ui.view">
+        <field name="name">crm.lead.list.inherit.lead_to_quote</field>
+        <field name="model">crm.lead</field>
+        <field name="inherit_id" ref="crm.crm_lead_view_list_activities"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='user_id']" position="before">
+                <field name="lead_score" optional="show"/>
+                <field name="score_band" optional="show" widget="badge"
+                       decoration-danger="score_band == 'cold'"
+                       decoration-warning="score_band == 'warm'"
+                       decoration-success="score_band == 'hot'"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
