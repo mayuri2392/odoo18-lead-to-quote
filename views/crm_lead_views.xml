@@ -5,6 +5,7 @@
         <field name="model">crm.lead</field>
         <field name="inherit_id" ref="crm.crm_lead_view_form"/>
         <field name="arch" type="xml">
+
             <xpath expr="//header" position="inside">
                 <button name="action_create_quotation"
                         type="object"
@@ -13,16 +14,25 @@
                         help="Creates a pre-filled quotation using lead score, assigned salesperson, and pricing rules."
                         invisible="type != 'opportunity' or quotation_count > 0"/>
             </xpath>
-            <xpath expr="//field[@name='probability']" position="after">
-                <field name="lead_score" readonly="1"/>
-                <field name="score_band" widget="badge"
-                       decoration-danger="score_band == 'cold'"
-                       decoration-warning="score_band == 'warm'"
-                       decoration-success="score_band == 'hot'"/>
-                <field name="auto_assigned" readonly="1"/>
-                <field name="assignment_rule_id" readonly="1"
-                       invisible="not auto_assigned"/>
+
+            <xpath expr="//group[group[@name='lead_partner']]" position="before">
+                <group name="lead_scoring" invisible="type != 'opportunity'">
+                    <group>
+                        <field name="auto_assigned" invisible="1"/>
+                        <field name="lead_score" string="Lead Score" readonly="1"/>
+                        <field name="score_band" string="Score Band" widget="badge"
+                               readonly="1"
+                               decoration-danger="score_band == 'cold'"
+                               decoration-warning="score_band == 'warm'"
+                               decoration-success="score_band == 'hot'"/>
+                        <field name="assignment_rule_id" string="Assigned by Rule"
+                               readonly="1"
+                               invisible="not auto_assigned"/>
+                    </group>
+                    <group/>
+                </group>
             </xpath>
+
         </field>
     </record>
 
@@ -32,8 +42,9 @@
         <field name="inherit_id" ref="crm.crm_lead_view_list_activities"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='user_id']" position="before">
-                <field name="lead_score" optional="show"/>
+                <field name="lead_score" optional="show" string="Score"/>
                 <field name="score_band" optional="show" widget="badge"
+                       string="Band"
                        decoration-danger="score_band == 'cold'"
                        decoration-warning="score_band == 'warm'"
                        decoration-success="score_band == 'hot'"/>
