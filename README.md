@@ -23,9 +23,13 @@ in Odoo 18 Community. Follows Odoo S.A. coding conventions throughout.
 
 Requires Odoo 18 Community with `sale_crm` and `sale_management` installed.
 
+1. Clone the repo into your addons folder:
 ```bash
-./odoo-bin -c odoo.conf -i lead_to_quote
+git clone https://github.com/mayuri2392/odoo18-lead-to-quote.git \
+  ~/Projects/odoo18/custom_addons/lead_to_quote
 ```
+2. Restart Odoo
+3. Go to Settings → Apps → search `lead_to_quote` → Install
 
 ## Author
 
