@@ -61,7 +61,7 @@ Three rules with minimum score thresholds. The engine picks the first rule the l
 ### Pipeline Kanban
 ![Pipeline Kanban](static/src/img/screenshots/03_pipeline_kanban.png)
 
-All four TechSource ME opportunities visible in the New stage. Each card shows the assigned salesperson avatar — James Cooper on the SME lead, Sarah Mitchell on the three higher-value deals.
+Pipeline view showing one opportunity in each stage: New, Qualified, Proposition, and Won. Stage totals appear at the top of each column (18k AED in New, 4.5k in Qualified, 32k in Proposition, 85k in Won). Each card shows the assigned salesperson avatar: James Cooper on the SME lead, Sarah Mitchell on the three higher-value deals.
 
 ### Hot Opportunity — Dell Server Refresh
 ![Hot Opportunity](static/src/img/screenshots/04_hot_opportunity.png)
