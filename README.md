@@ -192,6 +192,7 @@ Restart Odoo, enable developer mode, then install **Lead to Quote** from the App
 - The Create Quotation button uses `invisible="type != 'opportunity' or quotation_count > 0"` — Odoo 18 Python boolean syntax, no `attrs={}`.
 - Score fields only populate after opportunity conversion. Expected Revenue is the key trigger for revenue-based scoring rules.
 - Compatible with Odoo 18 Community. No Docker required for local development.
+- Stage flow reuses the native crm.stage model and standard Pipeline kanban; no custom stage logic.
 
 ---
 
